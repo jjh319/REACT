@@ -32,16 +32,7 @@
 
     <body>
         <div id="app"></div>
-        <!-- <h1>1번째 고양이 가라사대</h1>
-        <form>
-            <input type="text" name="name" placeholder="영어 대사를 입력해주세요" />
-            <button type="submit">생성</button>
-        </form>
-        <div class="main-card">
-            <img src="https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react" alt="고양이" width="400" />
-            <button>🤍</button>
-        </div>
-        -->
+
         <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -54,25 +45,42 @@
                 </li>
             );
 
-            const FOO = 'hello world';
-            function foo() {
-                return 1;
-            }
             const favorites = (
                 <ul class="favorites">
-                    {1 + 2}
-                    {FOO === 'hello world' ? 'true' : 'false'}
-                    {FOO}
-                    {foo()}
                     {catItem}
                     {catItem}
                     {catItem}
                 </ul>
             );
 
+            const mainCard = (
+                <div class="main-card">
+                    <img src="https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react" alt="고양이" width="400" />
+                    <button>🤍</button>
+                </div>
+            );
+
+            const h1Tag = <h1>1번째 고양이 가라사대</h1>;
+
+            const formTag = (
+                <form>
+                    <input type="text" name="name" placeholder="영어 대사를 입력해주세요" />
+                    <button type="submit">생성</button>
+                </form>
+            );
+
+            const app = (
+                <div>
+                    {h1Tag}
+                    {formTag}
+                    {mainCard}
+                    {favorites}
+                </div>
+            );
+
             const 여기다가그려 = document.querySelector('#app');
 
-            ReactDOM.createRoot(여기다가그려).render(favorites);
+            ReactDOM.createRoot(여기다가그려).render(app);
         </script>
     </body>
 </html>
