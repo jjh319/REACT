@@ -69,10 +69,20 @@
                 );
             };
 
-            const MainCard = (props) => {
+            // const MainCard = (props) => {
+            //     return (
+            //         <div class="main-card">
+            //             <img src={props.img} alt="고양이" width="400" />
+            //             <button>🤍</button>
+            //         </div>
+            //     );
+            // };
+
+            // ES6+ 디스트럭처링 문법 적용 후
+            const MainCard = ({ img }) => {
                 return (
                     <div class="main-card">
-                        <img src={props.img} alt="고양이" width="400" />
+                        <img src={img} alt="고양이" width="400" />
                         <button>🤍</button>
                     </div>
                 );
