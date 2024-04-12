@@ -39,42 +39,52 @@
         <script type="text/babel">
             console.log('야옹');
 
-            const catItem = (
-                <li>
-                    <img src="https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react" />
-                </li>
-            );
+            function CatItem(props) {
+                return (
+                    <li>
+                        <img src={props.img} />
+                    </li>
+                );
+            }
 
-            const favorites = (
-                <ul class="favorites">
-                    {catItem}
-                    {catItem}
-                    {catItem}
-                </ul>
-            );
+            function Favorites() {
+                return (
+                    <ul class="favorites">
+                        <CatItem img="https://cataas.com/cat/BxqL2EjFmtxDkAm2/says/inflearn" />
+                        <CatItem img="https://cataas.com/cat/18MD6byVC1yKGpXp/says/JavaScript" />
+                    </ul>
+                );
+            }
 
-            const mainCard = (
-                <div class="main-card">
-                    <img src="https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react" alt="고양이" width="400" />
-                    <button>🤍</button>
-                </div>
-            );
+            const Title = (props) => {
+                return <h1>{props.children}</h1>;
+            };
 
-            const h1Tag = <h1>1번째 고양이 가라사대</h1>;
+            const FormTag = () => {
+                return (
+                    <form>
+                        <input type="text" name="name" placeholder="영어 대사를 입력해주세요" />
+                        <button type="submit">생성</button>
+                    </form>
+                );
+            };
 
-            const formTag = (
-                <form>
-                    <input type="text" name="name" placeholder="영어 대사를 입력해주세요" />
-                    <button type="submit">생성</button>
-                </form>
-            );
+            const MainCard = (props) => {
+                return (
+                    <div class="main-card">
+                        <img src={props.img} alt="고양이" width="400" />
+                        <button>🤍</button>
+                    </div>
+                );
+            };
 
             const app = (
                 <div>
-                    {h1Tag}
-                    {formTag}
-                    {mainCard}
-                    {favorites}
+                    <Title>1번째 고양이 가라사대</Title>
+                    <Title>2번째 고양이 가라사대</Title>
+                    <FormTag />
+                    <MainCard img="https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react" />
+                    <Favorites />
                 </div>
             );
 
