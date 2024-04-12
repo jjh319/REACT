@@ -33,6 +33,15 @@
         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
         <script type="text/babel">
+            const jsonLocalStorage = {
+                setItem: (key, value) => {
+                    localStorage.setItem(key, JSON.stringify(value));
+                },
+                getItem: (key) => {
+                    return JSON.parse(localStorage.getItem(key));
+                },
+            };
+
             console.log('야옹');
 
             function CatItem(props) {
@@ -123,23 +132,25 @@
                 const CAT2 = 'https://cataas.com/cat/BxqL2EjFmtxDkAm2/says/inflearn';
                 const CAT3 = 'https://cataas.com/cat/18MD6byVC1yKGpXp/says/JavaScript';
 
-                const [counter, setCounter] = React.useState(Number(localStorage.getItem('counter')));
+                const [counter, setCounter] = React.useState(jsonLocalStorage.getItem('counter'));
                 // const counter = counterState[0];
                 // const setCounter = counterState[1];
 
                 const [mainCat, setMainCat] = React.useState(CAT1);
 
-                const [favorites, setFavorites] = React.useState([CAT1, CAT2]);
+                const [favorites, setFavorites] = React.useState(jsonLocalStorage.getItem('favorites') || []);
 
                 function updateMainCat() {
                     setMainCat(CAT2);
                     const nextCounter = counter + 1;
                     setCounter(nextCounter);
-                    localStorage.setItem('counter', nextCounter);
+                    jsonLocalStorage.setItem('counter', nextCounter);
                 }
 
                 function handleHeartClick() {
-                    setFavorites([...favorites, CAT3]);
+                    const nextFavorites = [...favorites, mainCat];
+                    setFavorites(nextFavorites);
+                    jsonLocalStorage.setItem('favorites', nextFavorites);
                 }
 
                 return (
