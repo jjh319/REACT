@@ -44,10 +44,17 @@
             }
 
             function Favorites() {
+                const CAT1 = 'https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react';
+                const CAT2 = 'https://cataas.com/cat/BxqL2EjFmtxDkAm2/says/inflearn';
+                const CAT3 = 'https://cataas.com/cat/18MD6byVC1yKGpXp/says/JavaScript';
+
+                const cats = [CAT1, CAT2];
+
                 return (
                     <ul className="favorites">
-                        <CatItem img="https://cataas.com/cat/BxqL2EjFmtxDkAm2/says/inflearn" />
-                        <CatItem img="https://cataas.com/cat/18MD6byVC1yKGpXp/says/JavaScript" />
+                        {cats.map((cat) => (
+                            <CatItem img={cat} key={cat} />
+                        ))}
                     </ul>
                 );
             }
@@ -56,18 +63,7 @@
                 return <h1>{props.children}</h1>;
             };
 
-            const FormTag = () => {
-                const [counter, setCounter] = React.useState(1);
-                // const counter = counterState[0];
-                // const setCounter = counterState[1];
-
-                console.log('카운터', counter);
-
-                function handleFormSubmit(event) {
-                    event.preventDefault(); // 폼 전송 후 리프레쉬 되는것을 막음
-                    console.log('폼 전송됨');
-                    setCounter(counter + 1);
-                }
+            const FormTag = ({ handleFormSubmit }) => {
                 return (
                     <form onSubmit={handleFormSubmit}>
                         <input type="text" name="name" placeholder="영어 대사를 입력해주세요" />
@@ -78,7 +74,7 @@
 
             // const MainCard = (props) => {
             //     return (
-            //         <div class="main-card">
+            //         <div className="main-card">
             //             <img src={props.img} alt="고양이" width="400" />
             //             <button>🤍</button>
             //         </div>
@@ -105,18 +101,39 @@
                 );
             };
 
-            const app = (
-                <div>
-                    <Title>1번째 고양이 가라사대</Title>
-                    <FormTag />
-                    <MainCard img="https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react" />
-                    <Favorites />
-                </div>
-            );
+            const App = () => {
+                const CAT1 = 'https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react';
+                const CAT2 = 'https://cataas.com/cat/BxqL2EjFmtxDkAm2/says/inflearn';
+                const CAT3 = 'https://cataas.com/cat/18MD6byVC1yKGpXp/says/JavaScript';
+
+                const [counter, setCounter] = React.useState(1);
+                // const counter = counterState[0];
+                // const setCounter = counterState[1];
+
+                const [mainCat, setMainCat] = React.useState(CAT1);
+
+                console.log('카운터', counter);
+
+                function handleFormSubmit(event) {
+                    event.preventDefault(); // 폼 전송 후 리프레쉬 되는것을 막음
+                    console.log('폼 전송됨');
+                    setCounter(counter + 1);
+                    setMainCat(CAT2);
+                }
+
+                return (
+                    <div>
+                        <Title>{counter}번째 고양이 가라사대</Title>
+                        <FormTag handleFormSubmit={handleFormSubmit} />
+                        <MainCard img={mainCat} />
+                        <Favorites />
+                    </div>
+                );
+            };
 
             const 여기다가그려 = document.querySelector('#app');
 
-            ReactDOM.createRoot(여기다가그려).render(app);
+            ReactDOM.createRoot(여기다가그려).render(<App />);
         </script>
     </body>
 </html>
