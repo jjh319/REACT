@@ -43,16 +43,10 @@
                 );
             }
 
-            function Favorites() {
-                const CAT1 = 'https://cataas.com/cat/HSENVDU4ZMqy7KQ0/says/react';
-                const CAT2 = 'https://cataas.com/cat/BxqL2EjFmtxDkAm2/says/inflearn';
-                const CAT3 = 'https://cataas.com/cat/18MD6byVC1yKGpXp/says/JavaScript';
-
-                const cats = [CAT1, CAT2];
-
+            function Favorites({ favorites }) {
                 return (
                     <ul className="favorites">
-                        {cats.map((cat) => (
+                        {favorites.map((cat) => (
                             <CatItem img={cat} key={cat} />
                         ))}
                     </ul>
@@ -82,21 +76,11 @@
             // };
 
             // ES6+ 디스트럭처링 문법 적용 후
-            const MainCard = ({ img }) => {
-                function handleHeartClick() {
-                    console.log('하트눌렀음');
-                }
-
-                function handleHeartMouseOver() {
-                    console.log('하트 스쳐 지나감');
-                }
-
+            const MainCard = ({ img, handleHeartClick }) => {
                 return (
                     <div className="main-card">
                         <img src={img} alt="고양이" width="400" />
-                        <button onClick={handleHeartClick} onMouseOver={handleHeartMouseOver}>
-                            🤍
-                        </button>
+                        <button onClick={handleHeartClick}>🤍</button>
                     </div>
                 );
             };
@@ -112,6 +96,8 @@
 
                 const [mainCat, setMainCat] = React.useState(CAT1);
 
+                const [favorites, setFavorites] = React.useState([CAT1, CAT2]);
+
                 console.log('카운터', counter);
 
                 function handleFormSubmit(event) {
@@ -121,12 +107,17 @@
                     setMainCat(CAT2);
                 }
 
+                function handleHeartClick() {
+                    console.log('하트눌렀음');
+                    setFavorites([...favorites, CAT3]);
+                }
+
                 return (
                     <div>
                         <Title>{counter}번째 고양이 가라사대</Title>
                         <FormTag handleFormSubmit={handleFormSubmit} />
-                        <MainCard img={mainCat} />
-                        <Favorites />
+                        <MainCard img={mainCat} handleHeartClick={handleHeartClick} />
+                        <Favorites favorites={favorites} />
                     </div>
                 );
             };
