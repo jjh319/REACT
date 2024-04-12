@@ -24,10 +24,6 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-
-        .favorites img {
-            width: 150px;
-        }
     </style>
 
     <body>
@@ -42,14 +38,14 @@
             function CatItem(props) {
                 return (
                     <li>
-                        <img src={props.img} />
+                        <img src={props.img} style={{ width: '150px' }} />
                     </li>
                 );
             }
 
             function Favorites() {
                 return (
-                    <ul class="favorites">
+                    <ul className="favorites">
                         <CatItem img="https://cataas.com/cat/BxqL2EjFmtxDkAm2/says/inflearn" />
                         <CatItem img="https://cataas.com/cat/18MD6byVC1yKGpXp/says/JavaScript" />
                     </ul>
@@ -61,8 +57,12 @@
             };
 
             const FormTag = () => {
+                function handleFormSubmit(event) {
+                    event.preventDefault(); // 폼 전송 후 리프레쉬 되는것을 막음
+                    console.log('폼 전송됨');
+                }
                 return (
-                    <form>
+                    <form onSubmit={handleFormSubmit}>
                         <input type="text" name="name" placeholder="영어 대사를 입력해주세요" />
                         <button type="submit">생성</button>
                     </form>
@@ -80,10 +80,20 @@
 
             // ES6+ 디스트럭처링 문법 적용 후
             const MainCard = ({ img }) => {
+                function handleHeartClick() {
+                    console.log('하트눌렀음');
+                }
+
+                function handleHeartMouseOver() {
+                    console.log('하트 스쳐 지나감');
+                }
+
                 return (
-                    <div class="main-card">
+                    <div className="main-card">
                         <img src={img} alt="고양이" width="400" />
-                        <button>🤍</button>
+                        <button onClick={handleHeartClick} onMouseOver={handleHeartMouseOver}>
+                            🤍
+                        </button>
                     </div>
                 );
             };
