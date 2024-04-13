@@ -145,6 +145,19 @@
 
                 const [favorites, setFavorites] = React.useState(jsonLocalStorage.getItem('favorites') || []);
 
+                async function setInitialCat() {
+                    const newCat = await fetchCat('First cat');
+                    setMainCat(newCat);
+                }
+
+                React.useEffect(() => {
+                    setInitialCat();
+                }, []); // 빈 배열은 생성될 때 한번만 실행
+
+                React.useEffect(() => {
+                    console.log('헬로');
+                }, [counter]); // counter가 업뎃 될때만 실행
+
                 async function updateMainCat(value) {
                     const newCat = await fetchCat(value);
 
