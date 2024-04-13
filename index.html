@@ -58,6 +58,10 @@
             }
 
             function Favorites({ favorites }) {
+                if (favorites.length === 0) {
+                    return <div>사진 위 하트를 눌러 고양이 사진을 저장해봐요!</div>;
+                }
+
                 return (
                     <ul className="favorites">
                         {favorites.map((cat) => (
@@ -68,7 +72,10 @@
             }
 
             const Title = (props) => {
-                return <h1>{props.children}</h1>;
+                if (props.children === null) {
+                    return <h1>고양이 가라사대</h1>;
+                }
+                return <h1>{props.children}번째 고양이 가라사대</h1>;
             };
 
             const FormTag = ({ updateMainCat }) => {
@@ -123,11 +130,12 @@
             // };
 
             // ES6+ 디스트럭처링 문법 적용 후
-            const MainCard = ({ img, onHeartClick }) => {
+            const MainCard = ({ img, onHeartClick, alreadyFavorite }) => {
+                const heartIcon = alreadyFavorite ? '💖' : '🤍';
                 return (
                     <div className="main-card">
                         <img src={img} alt="고양이" width="400" />
-                        <button onClick={onHeartClick}>🤍</button>
+                        <button onClick={onHeartClick}>{heartIcon}</button>
                     </div>
                 );
             };
@@ -158,6 +166,8 @@
                     console.log('헬로');
                 }, [counter]); // counter가 업뎃 될때만 실행
 
+                const alreadyFavorite = favorites.includes(mainCat);
+
                 async function updateMainCat(value) {
                     const newCat = await fetchCat(value);
 
@@ -175,9 +185,9 @@
 
                 return (
                     <div>
-                        <Title>{counter}번째 고양이 가라사대</Title>
+                        <Title>{counter}</Title>
                         <FormTag updateMainCat={updateMainCat} />
-                        <MainCard img={mainCat} onHeartClick={handleHeartClick} />
+                        <MainCard img={mainCat} onHeartClick={handleHeartClick} alreadyFavorite={alreadyFavorite} />
                         <Favorites favorites={favorites} />
                     </div>
                 );
