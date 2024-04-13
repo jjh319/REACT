@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/REACT-CAT-JJAL-MAKER/static/css/main.2eab430d.css",
+    "main.js": "/REACT-CAT-JJAL-MAKER/static/js/main.dfe79366.js",
+    "static/js/453.e9cb9a4a.chunk.js": "/REACT-CAT-JJAL-MAKER/static/js/453.e9cb9a4a.chunk.js",
+    "static/media/logo.svg": "/REACT-CAT-JJAL-MAKER/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/REACT-CAT-JJAL-MAKER/index.html",
+    "main.2eab430d.css.map": "/REACT-CAT-JJAL-MAKER/static/css/main.2eab430d.css.map",
+    "main.dfe79366.js.map": "/REACT-CAT-JJAL-MAKER/static/js/main.dfe79366.js.map",
+    "453.e9cb9a4a.chunk.js.map": "/REACT-CAT-JJAL-MAKER/static/js/453.e9cb9a4a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2eab430d.css",
+    "static/js/main.dfe79366.js"
+  ]
+}
